@@ -12,6 +12,7 @@ let score = 0;
 while (prompteurQuestion !== "mots" && prompteurQuestion !== "phrases") {
   prompteurQuestion = prompt("Choisissez entre des phrases ou des mots !");
 }
+
 if (prompteurQuestion === "mots") {
   for (let i = 0; i < mots.length; i++) {
     let prompteur = prompt("écrivez le mot: " + mots[i]);
@@ -24,8 +25,7 @@ if (prompteurQuestion === "mots") {
     if (score === 4) {
       alert(`Bravo, vous avez fait un score de ${score} point(s) !`);
       break;
-    }
-     
+    }     
     console.log(score);
   }
 } else if (prompteurQuestion === "phrases") {

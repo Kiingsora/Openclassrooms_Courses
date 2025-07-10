@@ -7,20 +7,19 @@ const phrases = [
 let prompteurQuestion = prompt("voulez vous écrire des phrases ou des mots ?");
 let score = 0;
 
-function gameLaunch(modeChoisi) {
-  let motsOuPhrase;
+function gameLaunch() {
   while (prompteurQuestion !== "mots" && prompteurQuestion !== "phrases") {
     prompteurQuestion = prompt("Choisissez entre des phrases ou des mots !");
   }
 
   if (prompteurQuestion === "mots") {
-    motsOuPhrase = motsOuPhrases(modeChoisi);
+    motsOuPhrases(mots);
   } else if (prompteurQuestion === "phrases") {
-    motsOuPhrase = motsOuPhrases(modeChoisi);
+    motsOuPhrases(phrases);
   }
 }
 
-function motsOuPhrases(tableau, alerteRetournerScore) {
+function motsOuPhrases(tableau) {
   let tableauIndex = tableau.length;
   for (let i = 0; i < tableauIndex; i++) {
     let prompteur = prompt("écrivez le mot: " + tableau[i]);
@@ -34,7 +33,7 @@ function motsOuPhrases(tableau, alerteRetournerScore) {
     alert(`ET ${score} point(s) !`);
 
     if (score === tableauIndex) {
-      alerteRetournerScore = alert(retournerScore(score, tableauIndex));
+      +alert(retournerScore(score, tableauIndex));
       break;
     }
   }
@@ -44,4 +43,4 @@ function retournerScore(score, nombreQuestion) {
   let returnMessageScore = `Vous avez fait un score de ${score} sur ${nombreQuestion}`;
   return returnMessageScore;
 }
-gameLaunch(mots);
+gameLaunch();
