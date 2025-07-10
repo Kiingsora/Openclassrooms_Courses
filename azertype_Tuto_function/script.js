@@ -13,13 +13,13 @@ function gameLaunch() {
   }
 
   if (prompteurQuestion === "mots") {
-    motsOuPhrases(mots);
+    choixDuMode(mots);
   } else if (prompteurQuestion === "phrases") {
-    motsOuPhrases(phrases);
+    choixDuMode(phrases);
   }
 }
 
-function motsOuPhrases(tableau) {
+function choixDuMode(tableau) {
   let tableauIndex = tableau.length;
   for (let i = 0; i < tableauIndex; i++) {
     let prompteur = prompt("écrivez le mot: " + tableau[i]);
