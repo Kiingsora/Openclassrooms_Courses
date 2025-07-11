@@ -115,7 +115,6 @@
 //   console.log("c'est faux");
 // }
 
-
 // // le prompteur
 // let prompteur = prompt("ceci est un prompt, veuillez entrer un donnée");
 // console.log(prompteur); // affiche la value entrée dans le prompteur
@@ -175,11 +174,10 @@
 //     break;
 // }
 
-
 // if (prompteur == tableauDeMots[1]) {
 //   score++
 //   console.log(score);
-  
+
 // } else {
 //   console.log(tableauDeMots);
 //   console.log("non");
@@ -188,8 +186,7 @@
 // Les boucles : FOR
 // let i = 0;
 // for(let i = 0; i < 3; i = i++){
-  
-  
+
 // };
 
 // Les boucles : WHILE (tant que)
@@ -203,9 +200,16 @@
 
 // function nomDeLaFonction (parametre1, papametre2){
 //   // ici, le code que contient la fonction
-  
-//   let resultat =  parametre1 + papametre2 
+
+//   let resultat =  parametre1 + papametre2
 //   return resultat
 // }
 
-// console.log(nomDeLaFonction(1,2));// donne 3 car 1+2 = 3
+// console.log(nomDeLaFonction(1,2));// donne 3 car 1 + 2 = 3
+
+// Les fonctions fléchées
+const fonction = (x) => {
+  return x * 2;
+};
+console.log(fonction(9));
+
