@@ -33,13 +33,13 @@ function choixDuMode(tableau) {
     alert(`ET ${score} point(s) !`);
 
     if (score === tableauIndex) {
-      +alert(retournerScore(score, tableauIndex));
+      +alert(afficherResultat(score, tableauIndex));
       break;
     }
   }
 }
 
-function retournerScore(score, nombreQuestion) {
+function afficherResultat(score, nombreQuestion) {
   let returnMessageScore = `Vous avez fait un score de ${score} sur ${nombreQuestion}`;
   return returnMessageScore;
 }

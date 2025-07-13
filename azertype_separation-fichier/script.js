@@ -1,41 +1,51 @@
-let score = 0;
+// // en cas de faute
+// function faute() {
+//   while (prompteur !== phrases[i]) {
+//     alert("Mais que se passe t-il ?");
+//     prompteur = prompt("écrivez le mot: " + phrases[i]);
+//   }
+// }
 
+// récupère la valeur de l'entrée user
 function modeChoisi() {
-  let prompteurQuestion = prompt("voulez vous écrire des phrases ou des mots ?");
-  while (prompteurQuestion !== "mots" && prompteurQuestion !== "phrases") {
-    prompteurQuestion = prompt("Choisissez entre des phrases ou des mots !");
+  let modeDeJeu = prompt("voulez vous écrire des phrases ou des mots ?");
+  while (modeDeJeu !== "mots" && modeDeJeu !== "phrases") {
+    modeDeJeu = prompt("Choisissez entre des phrases ou des mots !");
   }
-
-  if (prompteurQuestion === "mots") {
-    boucleDeJeu(mots);
-  } else if (prompteurQuestion === "phrases") {
-    boucleDeJeu(phrases);
-  }
+  return modeDeJeu;
 }
 
-function boucleDeJeu(tableau) {
-  let tableauIndex = tableau.length;
-  for (let i = 0; i < tableauIndex; i++) {
-    let prompteur = prompt("écrivez le mot: " + tableau[i]);
-
-    // en cas de faute
-    while (prompteur !== tableau[i]) {
-      alert("Mais que se passe t-il ?");
-      prompteur = prompt("écrivez le mot: " + tableau[i]);
-    }
-    score++;
-    if (score === tableauIndex) {
-      alert(retournerScore(score, tableauIndex));
-      break;
+function boucleDeJeu(listeSelectioner) {
+  let score = 0;
+  for (let i = 0; i < listeSelectioner.length; i++) {
+    valuePrompt = prompt("écrivez : " + listeSelectioner[i]);
+    if (valuePrompt === listeSelectioner[i]) {
+      score++;
     }
   }
+  return score;
 }
 
-function retournerScore(score, nombreQuestion) {
-  let returnMessageScore = `Vous avez fait un score de ${score} sur ${nombreQuestion}`;
-  return returnMessageScore;
+// retourne le score finale
+function afficherResultat(score, nbElementtableau) {
+  alert("Vous avez fait un score de " + score + " sur " + nbElementtableau);
 }
-function launchGame(){
-  modeChoisi();
-  
+
+// lance le jeu
+function launchGame() {
+  let choix = modeChoisi();
+  let score = 0;
+  let nombreMotsOuPhrases = 0;
+
+  if (choix === "mots") {
+    score = boucleDeJeu(mots);
+    nombreMotsOuPhrases = mots.length;
+    console.log(score);
+  } else {
+    score = boucleDeJeu(phrases);
+    nombreMotsOuPhrases = phrases.length;
+  }
+  afficherResultat(score, nombreMotsOuPhrases);
 }
+
+launchGame();
