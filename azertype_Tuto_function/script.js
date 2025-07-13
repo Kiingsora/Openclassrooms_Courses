@@ -4,10 +4,12 @@ const phrases = [
   "je vole dans le ciel",
   "je suis un pirate",
 ];
-let prompteurQuestion = prompt("voulez vous écrire des phrases ou des mots ?");
 let score = 0;
 
 function gameLaunch() {
+  let prompteurQuestion = prompt(
+    "voulez vous écrire des phrases ou des mots ?"
+  );
   while (prompteurQuestion !== "mots" && prompteurQuestion !== "phrases") {
     prompteurQuestion = prompt("Choisissez entre des phrases ou des mots !");
   }
@@ -28,7 +30,6 @@ function choixDuMode(tableau) {
       alert("Mais que se passe t-il ?");
       prompteur = prompt("écrivez le mot: " + tableau[i]);
     }
-
     score++;
     alert(`ET ${score} point(s) !`);
 
