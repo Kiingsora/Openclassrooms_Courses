@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Remise à Niveau project</title>
+</head>
+<!-- <style>
+    * {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(43, 42, 42);
+    color: aliceblue;
+}
+
+h1 {
+    margin: 3rem;
+}
+
+#cards {
+    color: aliceblue;
+    border: white solid 0.1rem;
+    width: fit-content;
+    gap: 0.1rem;
+}
+.card {
+    color: aliceblue;
+    border: white solid 0.1rem;
+    width: fit-content;
+    display: flex;
+    gap: 0.1rem;
+    margin: 1rem;
+}
+
+.card div {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size:1.2rem;
+}
+
+.card img {
+    width: 8rem;
+    margin: 1rem;
+}
+button{
+    width: 8rem;
+    margin: 0.1em;
+}
+</style> -->
+<body>
+    <h1>Cartes de visite</h1>
+
+    <h2>Créer une nouvelle carte de visite</h2>
+    <section id="createCard">
+        
+            <form action="">
+                <p>Image de profil :</p> <input type="file" name="image" id="imageProfil">
+                <p>Nom :</p> <input id="nom" type="text" placeholder="Nom">
+                <p>Prénom :</p><input id="prenom" type="text" placeholder="Prénom">
+                <p>Adresse :</p> <input id="adresse" type="text" placeholder="Adresse">
+                <p>Entreprise :</p><input id="entreprise" type="text" placeholder="Entreprise">
+                <p>Description :</p><textarea id="description" name="Description"></textarea>
+                <p>Donnez une humeur :</p><input id="humeur" type="text" placeholder="joviale">
+            </form>
+        
+        <button id="buttonValidate">Rejoignez le crew</button>
+    </section>
+
+    <section id="cards">
+
+        <div class="card">
+            <img src="assets/images/a-captivating-cyberpunk-scene-featuring-an-elderly-fC1bpzmtQEWeeVQdMHwuFg-TMrKqnVWSg-gOuvViysLxQ.jpeg" alt="Hervé Dumont">
+            <div>
+                <p>Nom : Dugnon</p>
+                <p>Prénom : Hervé</p>
+                <p>Adresse : 12 rue de l'Odeur</p>
+                <p>Entreprise : Les oignons d'Hervé</p>
+                <p>Description : </p><span>Je suis Hervé Dugnon et mon métier est de m'occuper de mes oignons...et vous devriez en faire de même...</span>
+                <p>Vous êtes d'humeur Oignon ? <button class="onion">Onion Power !</button></p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- <script src="script.js"> -->
+    <script>
+    const body = document.querySelector("body")
+    const onion = document.querySelector(".onion");
+    const buttonValidate = document.getElementById("buttonValidate");    
+
+    onion.addEventListener('click', ()=>{
+
+        body.style.backgroundColor = (body.style.backgroundColor === "rgb(94, 125, 90)") ? "rgb(43, 42, 42)" : "rgb(94, 125, 90)"
+    })
+
+    buttonValidate.addEventListener('click', (event)=> {
+    event.preventDefault()
+
+    const cards = document.getElementById('cards');
+    const nom  = document.getElementById("nom").value;
+    const prenom  = document.getElementById("prenom").value;
+    const adresse = document.getElementById("adresse").value;
+    const entreprise = document.getElementById("entreprise").value;
+    const description = document.getElementById("description").value;
+    const humeur = document.getElementById("humeur").value;  
+    const form = document.querySelector("form");
+    
+    const imageProfil = document.getElementById("imageProfil");
+    const file = imageProfil.files[0];
+    
+    const newCard = {
+        nom,
+        prenom,
+        adresse,
+        entreprise,
+        description,
+        humeur,
+        imgURL:""
+    }
+    
+    if (file) {
+        
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            newCard.imgURL = e.target.result;
+            
+            savedCards.push(newCard);
+            localStorage.setItem("cards", JSON.stringify(savedCards));
+            createCardHTML(newCard)
+            
+        }
+        reader.readAsDataURL(file)
+        
+        form.reset();
+        
+        function cardcreatedHTML(data) {
+            
+            let card = document.createElement('div')
+            card.classList.add('card')
+            card.innerHTML = 
+            `<img src="${imgURL}" alt="${nom} ${prenom}">
+            <div>
+                <p>Nom : ${nom}</p>
+                <p>Prénom : ${prenom}</p>
+                <p>Adresse : ${adresse}</p>
+                <p>Entreprise : ${entreprise}</p>
+                <p>Description : </p><span>${description}</span>
+                <p>Vous êtes d'humeur ${humeur}? <button class="${humeur}"> ${humeur} Power !</button></p>
+                </div>`;
+                cards.append(card)
+            }  
+        }
+    })
+
+    windows.addEventListener("DOMContentLoaded", () => {
+        let savedCard = JSON.parse(localStorage.getItem("cards")) || [];
+        savedCard.forEach(card => {
+            createCardHTML(card)
+        });
+    })
+</script>
+</body>
+</html>

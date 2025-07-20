@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(43, 42, 42);
+    color: aliceblue;
+}
+
+h1,
+h2 {
+    margin: 2rem;
+}
+
+#createCard {
+    color: aliceblue;
+    border: white solid 0.1rem;
+    width: fit-content;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#cards {
+    color: aliceblue;
+    border: white solid 0.1rem;
+    margin: 1rem;
+    width: fit-content;
+    gap: 0.1rem;
+}
+
+.card {
+    color: aliceblue;
+    border: white solid 0.1rem;
+    width: fit-content;
+    display: flex;
+    gap: 0.1rem;
+    margin: 1rem;
+}
+
+.card div {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.card img {
+    width: 8rem;
+    margin: 1rem;
+}
+
+#onion {
+    width: 8rem;
+    margin: 0.1em;
+}
