@@ -64,7 +64,7 @@ alerte(longueurMotDePasse, contientUnChiffre, "zigzagzig");
 alerte(longueurMotDePasse, contientUnChiffre, "zigzagzig21");
 
 // Niveau 4 exo 5
-// version 1
+// version switch/case
 function calculatrice(chiffre1, chiffre2, operateur) {
   let resultat;
   switch (operateur) {
@@ -89,7 +89,7 @@ function calculatrice(chiffre1, chiffre2, operateur) {
 
 calculatrice(18, 8, "x");
 
-// version 2
+// version callback
 /*additionne les nombres entre eux*/
 function addition(nombre1, nombre2) {
   return nombre1 + nombre2;
@@ -112,8 +112,35 @@ function puissance(nombre1, nombre2) {
 }
 /**/
 function calculer(nombre1, nombre2, operation) {
-  return operation(nombre1,nombre2)
+  return operation(nombre1, nombre2);
 }
 
-console.log(calculer(10,5,puissance));
- 
+console.log(calculer(10, 5, puissance));
+
+// niveau 5
+// exercice 6
+
+let articles = [
+  {
+    nom: "Samsung Galaxy S24 FE",
+    prix: 699,
+  },
+  {
+    nom: "hogward legacy",
+    prix: 18.99,
+  },
+  {
+    nom: "Pc Gamer",
+    prix: 899,
+  },
+  {
+    nom: "Meta Quest 3",
+    prix: 499,
+  },
+];
+
+const total = articles.reduce((acc, article) => {
+  acc += article.prix;
+  return acc;
+}, 0);
+
