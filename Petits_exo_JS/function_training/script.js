@@ -144,3 +144,41 @@ const total = articles.reduce((acc, article) => {
   return acc;
 }, 0);
 
+let panier = [
+  {
+    nom: "Samsung Galaxy S24 FE",
+    prix: 699,
+  },
+  {
+    nom: "hogward legacy",
+    prix: 18.99,
+  },
+  {
+    nom: "Pc Gamer",
+    prix: 899,
+  },
+  {
+    nom: "Meta Quest 3",
+    prix: 499,
+  },
+];;
+
+function articleAuPanier(article, panier) {
+  panier.push(article);
+  return panier;
+}
+
+articleAuPanier({ nom: "GTA VI", prix: 89 }, panier);
+articleAuPanier({ nom: "Clavier Corsair", prix: 100 }, panier);
+articleAuPanier({ nom: "Clavier Corsair", prix: 100 }, panier);
+console.log(panier);
+
+function calculTotalPanier(panier) {
+  const total = panier.reduce((acc, panier) => { acc += panier.prix
+    return acc;
+}, 0);
+  return total
+}
+
+console.log(calculTotalPanier(panier));
+
