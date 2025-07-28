@@ -147,7 +147,7 @@ const total = articles.reduce((acc, article) => {
 let panier = [
   {
     nom: "Samsung Galaxy S24 FE",
-    prix: 699,
+    prix: 699.99,
   },
   {
     nom: "hogward legacy",
@@ -155,30 +155,46 @@ let panier = [
   },
   {
     nom: "Pc Gamer",
-    prix: 899,
+    prix: 899.99,
   },
   {
     nom: "Meta Quest 3",
-    prix: 499,
+    prix: 499.99,
   },
-];;
+];
 
 function articleAuPanier(article, panier) {
   panier.push(article);
   return panier;
 }
 
-articleAuPanier({ nom: "GTA VI", prix: 89 }, panier);
-articleAuPanier({ nom: "Clavier Corsair", prix: 100 }, panier);
-articleAuPanier({ nom: "Clavier Corsair", prix: 100 }, panier);
+articleAuPanier({ nom: "GTA VI", prix: 89.99 }, panier);
+articleAuPanier({ nom: "Clavier Corsair", prix: 100.99 }, panier);
+articleAuPanier({ nom: "Souris Corsair", prix: 55.99 }, panier);
 console.log(panier);
 
 function calculTotalPanier(panier) {
-  const total = panier.reduce((acc, panier) => { acc += panier.prix
-    return acc;
-}, 0);
-  return total
+  const total = panier.reduce((acc, panier) => { acc += panier.prix;return acc;}, 0);
+  return total;
 }
 
 console.log(calculTotalPanier(panier));
 
+function roundDecimal(nombre, precision){
+  var precision = precision || 2;
+  var tmp = Math.pow(10, precision);
+  return Math.round( nombre*tmp )/tmp;
+}
+
+
+function afficheRecu(panier) {
+  let total = calculTotalPanier(panier);
+  for (const article of panier) {
+    console.log(`ARTICLE : ${article.nom}  PRIX : ${article.prix} Euro`);
+  }
+  total = console.log(`TOTAL : ${roundDecimal(total, 2)}`);
+
+  return total
+}
+
+afficheRecu(panier);
