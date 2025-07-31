@@ -174,27 +174,45 @@ articleAuPanier({ nom: "Souris Corsair", prix: 55.99 }, panier);
 console.log(panier);
 
 function calculTotalPanier(panier) {
-  const total = panier.reduce((acc, panier) => { acc += panier.prix;return acc;}, 0);
+  const total = panier.reduce((acc, panier) => {
+    acc += panier.prix;
+    return acc;
+  }, 0);
   return total;
 }
 
-console.log(calculTotalPanier(panier));
-
-function roundDecimal(nombre, precision){
+function roundDecimal(nombre, precision) {
   var precision = precision || 2;
   var tmp = Math.pow(10, precision);
-  return Math.round( nombre*tmp )/tmp;
+  return Math.round(nombre * tmp) / tmp;
 }
 
+function remiseRecu(montant) {
+  montant = montant * 10 / 100;
+  console.log(`Vous avez une remise de ${montant} euro`);
+  return montant
+}
 
 function afficheRecu(panier) {
   let total = calculTotalPanier(panier);
   for (const article of panier) {
     console.log(`ARTICLE : ${article.nom}  PRIX : ${article.prix} Euro`);
   }
-  total = console.log(`TOTAL : ${roundDecimal(total, 2)}`);
 
-  return total
+  total = roundDecimal(total, 2);
+  console.log(total);
+
+  if (total >= 2000) {
+   let remiseApplicated = remiseRecu(total);   
+   total -= remiseApplicated 
+  }
+  
+  console.log(`TOTAL : ${roundDecimal(total, 2)}`);
+
+  return total;
 }
 
 afficheRecu(panier);
+
+
+
