@@ -28,17 +28,16 @@ function remise(prixInitial, remise) {
   const LIMITE_REMISE = 50;
 
   if (remise >= LIMITE_REMISE) {
-    prixAprèsRemise = alert(
-      "Frère tu veux pas que je te le donne le produit aussi ?!"
-    );
+    console.log("Frère tu veux pas que je te le donne le produit aussi ?!");
   } else {
-    prixAprèsRemise = console.log(
+    console.log(
       `Cela vous fais une remise de ${prixAprèsRemise} euro sur ${prixInitial} euro`
     );
   }
   return prixAprèsRemise;
 }
 remise(840, 49);
+remise(840, 60);
 
 // Niveau 3 exo 4
 function longueurMotDePasse(motDePasse) {
@@ -84,10 +83,10 @@ function calculatrice(chiffre1, chiffre2, operateur) {
       resultat = "Veuillez entrer des nombres !";
       break;
   }
-  return console.log(resultat);
+  return resultat;
 }
 
-calculatrice(18, 8, "x");
+console.log(calculatrice(18, 8, "x"));
 
 // version callback
 /*additionne les nombres entre eux*/
@@ -187,10 +186,10 @@ function roundDecimal(nombre, precision) {
   return Math.round(nombre * tmp) / tmp;
 }
 
-function remiseRecu(montant) {
-  montant = montant * 10 / 100;
+function calculerRemise(montant) {
+  montant = (montant * 10) / 100;
   console.log(`Vous avez une remise de ${montant} euro`);
-  return montant
+  return montant;
 }
 
 function afficheRecu(panier) {
@@ -203,16 +202,12 @@ function afficheRecu(panier) {
   console.log(total);
 
   if (total >= 2000) {
-   let remiseApplicated = remiseRecu(total);   
-   total -= remiseApplicated 
+    let remiseApplicated = calculerRemise(total);
+    total -= remiseApplicated;
   }
-  
-  console.log(`TOTAL : ${roundDecimal(total, 2)}`);
 
+  console.log(`TOTAL : ${roundDecimal(total, 2)}`);
   return total;
 }
 
 afficheRecu(panier);
-
-
-
