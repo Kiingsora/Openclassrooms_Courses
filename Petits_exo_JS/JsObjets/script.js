@@ -4,12 +4,13 @@
 const jedi = {
   nom : "Skywalker",
   prenom: "luke",
-  age:29
+  age:29,
+  cote: 'obscur'
 }
 // affichage des propriété de l'objet
 console.log(jedi.prenom, jedi.nom, jedi.age);
 // affichage de l'objet
-console.log(jedi);
+console.log(jedi); 
 
 
 // Niveau 2 exo 2 changer et ajouter un objet
@@ -39,7 +40,17 @@ for (const propriete in jedi) {
 
 // ajout d'une fonction dans l'objet jedi qui affiche un message de présentation
 jedi.sePresenter = function(){
-  console.log(`Je m'appelle ${this.prenom} ${this.nom}...Rejoins le côté obscur de la force`);
+  let message = `Je m'appelle ${this.prenom} ${this.nom}...`;
+// condition selon le côté de la force
+  if (this.cote === "obscur") {
+    message += 'Rejoins le côté obscur de la force'
+  }if (this.cote === "lumière") {
+    message += 'Rejoins le côté lumineux de la force'
+  };
+  console.log(message);
+  
 }
 // appel de la fonction sePrésenter d l'objet jedi
 jedi.sePresenter();
+
+
