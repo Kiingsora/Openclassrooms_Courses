@@ -145,3 +145,114 @@ function totalObjet(liste) {
 
 listeObjetEtQuantite(inventaireDuTVA);
 totalObjet(inventaireDuTVA);
+
+// // notion 8 exo 9 : Objet + function en callback
+// function depotEspece (solde, montant) {
+//   return solde += montant;
+//  };
+
+//  function retraitEspece(solde,montant){
+//   return solde -= montant;
+//  };
+
+// const banque = {
+//   nomDuClient:"Stanley Ipkis",
+//   solde: 250,
+//   operation: function(operation, montant){
+//     this.solde = operation(this.solde, montant)
+//   }
+// };
+// banque.operation(depotEspece,60)
+// console.log(banque.solde);
+
+// function ajoutQtd (stock, qtd) {
+//   return stock += qtd;
+// }
+
+// function retraitStock (stock, qtd) {
+//   return stock -= qtd;
+// }
+
+// const inventaire = {
+//   objet: "objet",
+//   stock: 280,
+//   majQtd: function(majQtd, qtd){
+//     this.stock = majQtd(this.stock, qtd)
+//   }
+// }
+
+// inventaire.majQtd(retraitStock, 12)
+// console.log(inventaire.stock);
+
+function prendrePotion(vie, point) {
+  return (vie += point);
+}
+function subirDegat(vie, point) {
+  return (vie -= point);
+}
+
+const personnage = {
+  nom: "baldor",
+  vie: 100,
+  action: function (action, point) {
+    this.vie = action(this.vie, point);
+  },
+};
+
+personnage.action(subirDegat, 18);
+console.log(personnage.vie);
+
+let message;
+
+
+
+// -----------------
+
+
+
+function appelTechnique(nom) {
+  message = console.log(`Ceci est appel Commercial de ${nom}`);
+
+  return message;
+}
+
+function appelCommercial(nom) {
+  message = console.log(`Ceci est appel Commercial de ${nom}`);
+  return message;
+}
+
+const centreAppel = {
+  nom: "SAV",
+  appel: function (client, appel) {
+    console.log(`${this.nom}`);
+    appel = appel(client);
+  },
+};
+
+centreAppel.appel("bob", appelCommercial);
+
+
+
+// ---------------
+
+
+function accesVIP(nom) {
+  message = console.log(`${nom}, à un acces VIP`);
+  return message;
+}
+
+function standardAcces(nom) {
+  message = console.log(`${nom}, à un acces standard`);
+  return message;
+}
+
+const evenement = {
+  nomEvenement: "Tech Meetup 2025",
+  annonce: function (visiteur, annonce) {
+    console.log(`${this.nomEvenement}`);
+    annonce(visiteur)
+  }
+};
+
+evenement.annonce("Sophie", standardAcces)
+
