@@ -146,43 +146,43 @@ function totalObjet(liste) {
 listeObjetEtQuantite(inventaireDuTVA);
 totalObjet(inventaireDuTVA);
 
-// // notion 8 exo 9 : Objet + function en callback
-// function depotEspece (solde, montant) {
-//   return solde += montant;
-//  };
+// notion 8 exo 9 : Objet + function en callback
+function depotEspece (solde, montant) {
+  return solde += montant;
+ };
 
-//  function retraitEspece(solde,montant){
-//   return solde -= montant;
-//  };
+ function retraitEspece(solde,montant){
+  return solde -= montant;
+ };
 
-// const banque = {
-//   nomDuClient:"Stanley Ipkis",
-//   solde: 250,
-//   operation: function(operation, montant){
-//     this.solde = operation(this.solde, montant)
-//   }
-// };
-// banque.operation(depotEspece,60)
-// console.log(banque.solde);
+const banque = {
+  nomDuClient:"Stanley Ipkis",
+  solde: 250,
+  operation: function(operation, montant){
+    this.solde = operation(this.solde, montant)
+  }
+};
+banque.operation(depotEspece,60)
+console.log(banque.solde);
 
-// function ajoutQtd (stock, qtd) {
-//   return stock += qtd;
-// }
+function ajoutQtd (stock, qtd) {
+  return stock += qtd;
+}
 
-// function retraitStock (stock, qtd) {
-//   return stock -= qtd;
-// }
+function retraitStock (stock, qtd) {
+  return stock -= qtd;
+}
 
-// const inventaire = {
-//   objet: "objet",
-//   stock: 280,
-//   majQtd: function(majQtd, qtd){
-//     this.stock = majQtd(this.stock, qtd)
-//   }
-// }
+const inventaire = {
+  objet: "objet",
+  stock: 280,
+  majQtd: function(majQtd, qtd){
+    this.stock = majQtd(this.stock, qtd)
+  }
+}
 
-// inventaire.majQtd(retraitStock, 12)
-// console.log(inventaire.stock);
+inventaire.majQtd(retraitStock, 12)
+console.log(inventaire.stock);
 
 function prendrePotion(vie, point) {
   return (vie += point);
@@ -204,11 +204,7 @@ console.log(personnage.vie);
 
 let message;
 
-
-
 // -----------------
-
-
 
 function appelTechnique(nom) {
   message = console.log(`Ceci est appel Commercial de ${nom}`);
@@ -231,10 +227,7 @@ const centreAppel = {
 
 centreAppel.appel("bob", appelCommercial);
 
-
-
 // ---------------
-
 
 function accesVIP(nom) {
   message = console.log(`${nom}, à un acces VIP`);
@@ -249,10 +242,68 @@ function standardAcces(nom) {
 const evenement = {
   nomEvenement: "Tech Meetup 2025",
   annonce: function (visiteur, annonce) {
-    console.log(`${this.nomEvenement}`);
+    console.log(`----${this.nomEvenement}----`);
     annonce(visiteur)
   }
 };
 
-evenement.annonce("Sophie", standardAcces)
+evenement.annonce("Sophie", standardAcces);
+evenement.annonce("yves", accesVIP)
 
+function champRequis(nom) {
+  if (nom.trim() === "") {
+    console.log("Veuillez entrer un nom !");
+  } else {
+    return console.log(`${nom}`);
+  }
+}
+
+function isValidEmail(email) {
+  // Expression régulière pour valider le format de l'email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email.trim() === "" || !emailRegex.test(email)) {
+    console.log("Veuillez entrer un mail valide !");
+  } else {
+    console.log(email);
+  }
+  return emailRegex.test(email);
+}
+
+const formulaire = {
+  nom: "Inscription",
+  verification: function (name, callback) {
+    console.log(`----${this.nom}---`);
+        callback(name);
+  },
+};
+
+formulaire.verification("sam", champRequis);
+formulaire.verification("sam@bridges.com", isValidEmail)
+
+
+
+function nomRequis(nom) {
+  return nom.trim() !== "";
+}
+
+function validEmail(email) {
+  // Expression régulière pour valider le format de l'email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email.trim());
+}
+
+const formulaire1 = {
+  nom: "Inscription",
+  verification: function (champ,valeur, callback) {
+    console.log(`----${this.nom}----`);
+    const ok = callback(valeur)
+      if (ok) {
+        console.log(`${champ} ok`);
+      }else{
+        console.log(`${champ} erreur`);
+      }
+  },
+};
+
+formulaire1.verification("nom","sam", nomRequis);
+formulaire1.verification("email","sam@bridges.com", validEmail)
