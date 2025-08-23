@@ -273,7 +273,7 @@ const formulaire = {
   nom: "Inscription",
   verification: function (name, callback) {
     console.log(`----${this.nom}---`);
-        callback(name);
+    callback(name);
   },
 };
 
