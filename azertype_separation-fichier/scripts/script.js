@@ -1,4 +1,7 @@
 // récupère la valeur de l'entrée user
+let body = document.querySelector("body");
+let promptor = document.querySelector("input")
+
 function modeChoisi() {
   let modeDeJeu = prompt("voulez vous écrire des phrases ou des mots ?");
   while (modeDeJeu !== "mots" && modeDeJeu !== "phrases") {
@@ -20,7 +23,9 @@ function boucleDeJeu(listeSelectioner) {
 
 // retourne le score finale
 function afficherResultat(score, nbElementtableau) {
-  alert("Vous avez fait un score de " + score + " sur " + nbElementtableau);
+  let affichageScore = document.createElement('p');
+  body.appendChild(affichageScore)
+  affichageScore.innerText = `Vous avez fait un score  de ${score}  sur  ${nbElementtableau}`
 }
 
 function launchGame() {
@@ -31,7 +36,6 @@ function launchGame() {
   if (choix === "mots") {
     score = boucleDeJeu(mots);
     nombreMotsOuPhrases = mots.length;
-    console.log(score);
   } else {
     score = boucleDeJeu(phrases);
     nombreMotsOuPhrases = phrases.length;
