@@ -1,44 +1,53 @@
-// récupère la valeur de l'entrée user
 let body = document.querySelector("body");
-let promptor = document.querySelector("input")
+let input = document.querySelector("input");
+let validate = document.getElementById("validate");
+let zonePropostion = document.getElementById("zonePropostion");
 
-function modeChoisi() {
-  let modeDeJeu = prompt("voulez vous écrire des phrases ou des mots ?");
-  while (modeDeJeu !== "mots" && modeDeJeu !== "phrases") {
-    modeDeJeu = prompt("Choisissez entre des phrases ou des mots !");
-  }
-  return modeDeJeu;
-}
+let formRadio = document.querySelector(".formRadio");
 
-function boucleDeJeu(listeSelectioner) {
-  let score = 0;
-  for (let i = 0; i < listeSelectioner.length; i++) {
-    valuePrompt = prompt("écrivez : " + listeSelectioner[i]);
-    if (valuePrompt === listeSelectioner[i]) {
-      score++;
+let zoneScore = document.querySelector(".zoneScore");
+
+let score = 0;
+let i = 0;
+input.focus();
+
+// lance le jeu
+function launchGameW() {
+  afficherProposition(mots);
+  zonePropostion.innerText = mots[i];
+  document.addEventListener("keydown", (event) => {
+    let key = event.key;
+    if (key === "Enter") {
+      let isCorrect = input.value === mots[i];
+      if (isCorrect) {
+        score++;
+      }
+      afficherResultat(score, mots);
+      input.value = "";
+      i++;
+      afficherProposition(mots);
     }
-  }
-  return score;
+  });
+  afficherResultat(score, mots);
 }
 
-// retourne le score finale
-function afficherResultat(score, nbElementtableau) {
-  let affichageScore = document.createElement('p');
-  body.appendChild(affichageScore)
-  affichageScore.innerText = `Vous avez fait un score  de ${score}  sur  ${nbElementtableau}`
+// propose les mots
+function afficherProposition(proposition) {
+  zonePropostion.innerText = proposition[i];
+
+  if (proposition[i] === undefined) {
+    zonePropostion.innerText = "Le jeu est terminé";
+    input.disabled = "true";
+  }
 }
 
-function launchGame() {
-  let choix = modeChoisi();
-  let score = 0;
-  let nombreMotsOuPhrases = 0;
+// affiche le résultats
+function afficherResultat(score, mots) {
+  let affichageScore = document.querySelector(".zoneScore span");
+  zoneScore.appendChild(affichageScore);
+  affichageScore.innerText = ` ${score} / ${mots.length}`;
+}
 
-  if (choix === "mots") {
-    score = boucleDeJeu(mots);
-    nombreMotsOuPhrases = mots.length;
-  } else {
-    score = boucleDeJeu(phrases);
-    nombreMotsOuPhrases = phrases.length;
-  }
-  afficherResultat(score, nombreMotsOuPhrases);
+for (let i = 0; i < formRadio.length; i++) {
+  
 }
