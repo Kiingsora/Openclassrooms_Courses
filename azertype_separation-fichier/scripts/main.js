@@ -1,3 +1,2 @@
 // lance le jeu
 launchGameW();
-  

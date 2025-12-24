@@ -3,40 +3,47 @@ let input = document.querySelector("input");
 let validate = document.getElementById("validate");
 let zonePropostion = document.getElementById("zonePropostion");
 
+let zoneScore = document.querySelector(".zoneScore")
+
 let score = 0;
 let i = 0;
+input.focus();
 
+// lance le jeu
+function launchGameW() {
+  afficherProposition(mots);
+  zonePropostion.innerText = mots[i];
+  document.addEventListener("keydown", (event) => {
+    let key = event.key;
+    if (key === "Enter") {
+
+      let isCorrect = input.value === mots[i];
+      if (isCorrect) {
+        score++;
+      }
+
+      afficherResultat(score, mots)
+      input.value = "";
+      i++;
+      afficherProposition(mots);
+    }
+  });
+  afficherResultat(score, mots)
+}
+
+// propose les mots
 function afficherProposition(proposition) {
   zonePropostion.innerText = proposition[i];
   
   if (proposition[i] === undefined) {
     zonePropostion.innerText = "Le jeu est terminé";
-    validate.disabled = "true";
-    afficherResultat(score, mots);
+    input.disabled = "true";
   }
 }
 
-function launchGameW() {
-  afficherProposition(mots);
-  zonePropostion.innerText = mots[i];
-  
-  validate.addEventListener("click", () => {
-    if (input.value === mots[i]) {
-      console.log("point");
-      score++
-    }
-
-    i++;
-    input.value = "";
-    afficherProposition(mots);
-    // retourne le score finale
-  });
-
-}
-
-
+// affiche le résultats
 function afficherResultat(score, mots) {
-  let affichageScore = document.createElement("p");
-  body.appendChild(affichageScore);
-  affichageScore.innerText = `Vous avez fait un score de ${score} sur ${mots.length}`;
+  let affichageScore = document.querySelector(".zoneScore span");
+  zoneScore.appendChild(affichageScore);
+  affichageScore.innerText = ` ${score} / ${mots.length}`;
 }
