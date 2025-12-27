@@ -3,7 +3,7 @@ let input = document.querySelector("input");
 let validate = document.getElementById("validate");
 let zonePropostion = document.getElementById("zonePropostion");
 
-let zoneScore = document.querySelector(".zoneScore")
+let zoneScore = document.querySelector(".zoneScore");
 
 let score = 0;
 let i = 0;
@@ -16,25 +16,24 @@ function launchGameW() {
   document.addEventListener("keydown", (event) => {
     let key = event.key;
     if (key === "Enter") {
-
       let isCorrect = input.value === mots[i];
       if (isCorrect) {
         score++;
       }
 
-      afficherResultat(score, mots)
+      afficherResultat(score, mots);
       input.value = "";
       i++;
       afficherProposition(mots);
     }
   });
-  afficherResultat(score, mots)
+  afficherResultat(score, mots);
 }
 
 // propose les mots
 function afficherProposition(proposition) {
   zonePropostion.innerText = proposition[i];
-  
+
   if (proposition[i] === undefined) {
     zonePropostion.innerText = "Le jeu est terminé";
     input.disabled = "true";
@@ -47,3 +46,14 @@ function afficherResultat(score, mots) {
   zoneScore.appendChild(affichageScore);
   affichageScore.innerText = ` ${score} / ${mots.length}`;
 }
+
+let motsOuPhrases = document.querySelectorAll('input[name="typeText');
+let typeText= "";
+
+for (let i = 0; i < motsOuPhrases.length; i++) {
+    if (motsOuPhrases[i].checked) {
+      typeText = motsOuPhrases[i].value
+      break
+    }  
+}
+console.log(typeText);
