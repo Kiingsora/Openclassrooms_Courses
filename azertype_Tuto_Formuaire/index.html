@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Azertype</title>
+    <!-- Ajout du favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
+  <body>
     <h1>Azertype prompt</h1>
 
-    <form id="formRadio" action="">
-        <input id="radioMots" type="radio">Mots
-        <label  for="radioMots"></label>
-        <input id="radioPhrases" type="radio">Phrases
-        <label  for="radioPhrases"></label>
+    <form id="formScore" action="">
+      <h2 for="">Partagez votre score</h2>
+      <label for="nom">Votre pseudo :</label>
+      <input type="text" id="nom" name="nom">
+      <h3>Avec qui voulez-vous partager votre score ?</h3>
+      <label for="email">Votre Email :</label>
+      <input type="email" id="email" name="email">
+      <button>Envoyer</button>
     </form>
 
-    <div id="zonePropostion" style="height: 2.5rem; font-size: 2rem;  text-transform: uppercase;"></div>
-    <input type="text">
-    <div class="zoneScore">Score : <span></span></div>
+    <div id="zonePropostion" style="height: 2rem; border: 1px solid red"></div>
+    <input id="promptGame" type="text" />
+    <div class="zoneScore">Score : <span>0</span></div>
 
     <script src="scripts/config.js"></script>
     <script src="scripts/script.js"></script>
     <script src="scripts/main.js"></script>
-</body>
-
+  </body>
 </html>

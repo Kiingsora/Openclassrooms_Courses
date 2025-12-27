@@ -1,15 +1,17 @@
 let body = document.querySelector("body");
-let input = document.querySelector("input");
+let promptGame = document.querySelector("#promptGame");
 let validate = document.getElementById("validate");
 let zonePropostion = document.getElementById("zonePropostion");
-
-let formRadio = document.querySelector(".formRadio");
 
 let zoneScore = document.querySelector(".zoneScore");
 
 let score = 0;
 let i = 0;
-input.focus();
+promptGame.focus();
+
+let formulaire = document.getElementById('formScore');
+let nom = document.getElementById('nom');
+let email = document.getElementById('email');
 
 // lance le jeu
 function launchGameW() {
@@ -18,17 +20,19 @@ function launchGameW() {
   document.addEventListener("keydown", (event) => {
     let key = event.key;
     if (key === "Enter") {
-      let isCorrect = input.value === mots[i];
+      let isCorrect = promptGame.value === mots[i];
       if (isCorrect) {
         score++;
       }
+
       afficherResultat(score, mots);
-      input.value = "";
+      promptGame.value = "";
       i++;
       afficherProposition(mots);
     }
   });
   afficherResultat(score, mots);
+
 }
 
 // propose les mots
@@ -37,10 +41,18 @@ function afficherProposition(proposition) {
 
   if (proposition[i] === undefined) {
     zonePropostion.innerText = "Le jeu est terminé";
-    input.disabled = "true";
+    promptGame.disabled = "true";
+    formApparition();
   }
 }
 
+function formApparition(){
+  setTimeout(() => {
+    formulaire.style.display = "flex";
+    console.log("it's ok");
+  }, 3000);
+}
+    
 // affiche le résultats
 function afficherResultat(score, mots) {
   let affichageScore = document.querySelector(".zoneScore span");
@@ -48,6 +60,23 @@ function afficherResultat(score, mots) {
   affichageScore.innerText = ` ${score} / ${mots.length}`;
 }
 
-for (let i = 0; i < formRadio.length; i++) {
-  
+let motsOuPhrases = document.querySelectorAll('input[name="typeText');
+let typeText= "";
+
+for (let i = 0; i < motsOuPhrases.length; i++) {
+    if (motsOuPhrases[i].checked) {
+      typeText = motsOuPhrases[i].value
+      break
+    }  
+}
+
+
+
+function formAppair() {
+  formulaire.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    nom.value = "";
+    email.value = "";
+    console.log("submited");
+  })
 }
