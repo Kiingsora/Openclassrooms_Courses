@@ -46,6 +46,7 @@ function afficherProposition(proposition) {
   }
 }
 
+// affiche le formulaire 
 function formApparition(){
   setTimeout(() => {
     formulaire.style.display = "flex";
@@ -60,7 +61,17 @@ function afficherResultat(score, mots) {
   affichageScore.innerText = ` ${score} / ${mots.length}`;
 }
 
-let motsOuPhrases = document.querySelectorAll('input[name="typeText');
+// gestion formulaire 
+function formAppair() {
+  formulaire.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    nom.value = "";
+    email.value = "";
+    console.log("submited");
+  })
+}
+
+let motsOuPhrases = document.querySelectorAll('input[name="choix"]');
 let typeText= "";
 
 for (let i = 0; i < motsOuPhrases.length; i++) {
@@ -70,13 +81,3 @@ for (let i = 0; i < motsOuPhrases.length; i++) {
     }  
 }
 
-
-
-function formAppair() {
-  formulaire.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    nom.value = "";
-    email.value = "";
-    console.log("submited");
-  })
-}
