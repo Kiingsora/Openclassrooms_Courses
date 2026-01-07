@@ -7,7 +7,6 @@ let zoneScore = document.querySelector(".zoneScore");
 
 let score = 0;
 let i = 0;
-promptGame.focus();
 
 let formulaire = document.getElementById("formScore");
 let nom = document.getElementById("nom");
@@ -15,35 +14,13 @@ let email = document.getElementById("email");
 
 let typeText = "";
 let inputMotsOuPhrases = document.querySelectorAll(".radioButton input");
-inputMotsOuPhrases[0,1].checked =  false
-console.log(inputMotsOuPhrases);
 
 let listeProposition;
-
-//  selection du mode
-function choixDuMode() {
-  for (let i = 0; i < inputMotsOuPhrases.length; i++) {
-    typeText = inputMotsOuPhrases[i].value;
-    console.log(inputMotsOuPhrases);
-    
-
-    inputMotsOuPhrases[i].addEventListener("change", (event) => {
-      let cible = event.target;
-      if (cible.id === "mots") {
-        listeProposition = listeMots;
-      } else {
-        listeProposition = listePhrases;
-      }
-      afficherProposition(listeProposition);
-    });
-  }
-}
 
 // lance le jeu
 function launchGameW() {
   choixDuMode();
-
-  zonePropostion.innerText = listeProposition[i];
+  
   document.addEventListener("keydown", (event) => {
     let key = event.key;
     if (key === "Enter") {
@@ -57,6 +34,29 @@ function launchGameW() {
     }
   });
   afficherResultat(score, listeProposition);
+}
+
+//  selection du mode
+function choixDuMode() {
+  inputMotsOuPhrases[0].checked = false;
+  inputMotsOuPhrases[1].checked = false;
+
+  for (let i = 0; i < inputMotsOuPhrases.length; i++) {
+    typeText = inputMotsOuPhrases[i].value;
+    console.log(inputMotsOuPhrases);
+    
+    inputMotsOuPhrases[i].addEventListener("change", (event) => {
+      let cible = event.target;
+      if (cible.id === "mots") {
+        listeProposition = listeMots;
+      } else {
+        listeProposition = listePhrases;
+      }
+      promptGame.disabled = false;
+      promptGame.focus();
+      afficherProposition(listeProposition);
+    });
+  }
 }
 
 // propose les mots
@@ -80,10 +80,10 @@ function formApparition() {
 }
 
 // affiche le résultats
-function afficherResultat(score, listeMots) {
+function afficherResultat(score, listeProposition) {
   let affichageScore = document.querySelector(".zoneScore span");
   zoneScore.appendChild(affichageScore);
-  affichageScore.innerText = ` ${score} / ${listeMots.length}`;
+  affichageScore.innerText = ` ${score} / ${listeProposition.length}`;
 }
 
 // gestion formulaire
