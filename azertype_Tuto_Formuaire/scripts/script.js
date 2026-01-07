@@ -15,33 +15,34 @@ let email = document.getElementById("email");
 
 let typeText = "";
 let inputMotsOuPhrases = document.querySelectorAll(".radioButton input");
-let listeProposition ;
+inputMotsOuPhrases[0,1].checked =  false
+console.log(inputMotsOuPhrases);
 
-for (let i = 0; i < inputMotsOuPhrases.length; i++) {
-  typeText = inputMotsOuPhrases[i].value;
-  
-  inputMotsOuPhrases[i].addEventListener("change", (event) => {
-    let cible = event.target;
-    console.log(event.target);
+let listeProposition;
 
-    if (cible.id === "phrases") {
-      listeProposition = listePhrases;
-      console.log("phrases");
-      
-    }else{
-      listeProposition = listeMots;
-      console.log("mots");
-    }
-  });
+//  selection du mode
+function choixDuMode() {
+  for (let i = 0; i < inputMotsOuPhrases.length; i++) {
+    typeText = inputMotsOuPhrases[i].value;
+    console.log(inputMotsOuPhrases);
+    
+
+    inputMotsOuPhrases[i].addEventListener("change", (event) => {
+      let cible = event.target;
+      if (cible.id === "mots") {
+        listeProposition = listeMots;
+      } else {
+        listeProposition = listePhrases;
+      }
+      afficherProposition(listeProposition);
+    });
+  }
 }
-
 
 // lance le jeu
 function launchGameW() {
+  choixDuMode();
 
-  afficherProposition(listeProposition);
-  console.log(listeProposition);
-  
   zonePropostion.innerText = listeProposition[i];
   document.addEventListener("keydown", (event) => {
     let key = event.key;
@@ -50,11 +51,9 @@ function launchGameW() {
       if (isCorrect) {
         score++;
       }
-
       afficherResultat(score, listeProposition);
       promptGame.value = "";
       i++;
-      afficherProposition(listeProposition);
     }
   });
   afficherResultat(score, listeProposition);
@@ -69,7 +68,7 @@ function afficherProposition(proposition) {
     promptGame.disabled = "true";
     formApparition();
   }
-  return proposition
+  return proposition;
 }
 
 // affiche le formulaire
@@ -95,5 +94,3 @@ function formGestion() {
     email.value = "";
   });
 }
-
-
