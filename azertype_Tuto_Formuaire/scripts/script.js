@@ -31,9 +31,9 @@ function launchGameW() {
       afficherResultat(score, listeProposition);
       promptGame.value = "";
       i++;
+      afficherProposition(listeProposition);
     }
   });
-  afficherResultat(score, listeProposition);
 }
 
 //  selection du mode
@@ -43,7 +43,6 @@ function choixDuMode() {
 
   for (let i = 0; i < inputMotsOuPhrases.length; i++) {
     typeText = inputMotsOuPhrases[i].value;
-    console.log(inputMotsOuPhrases);
     
     inputMotsOuPhrases[i].addEventListener("change", (event) => {
       let cible = event.target;
@@ -71,19 +70,20 @@ function afficherProposition(proposition) {
   return proposition;
 }
 
+// affiche le résultats
+function afficherResultat(score, listeProposition) {
+  let affichageScore = document.querySelector(".zoneScore span");
+  zoneScore.appendChild(affichageScore);
+  affichageScore.innerText = ` ${score} / ${listeProposition.length}`;
+  console.log(listeProposition);
+}
+
 // affiche le formulaire
 function formApparition() {
   setTimeout(() => {
     formulaire.style.display = "flex";
     console.log("it's ok");
   }, 3000);
-}
-
-// affiche le résultats
-function afficherResultat(score, listeProposition) {
-  let affichageScore = document.querySelector(".zoneScore span");
-  zoneScore.appendChild(affichageScore);
-  affichageScore.innerText = ` ${score} / ${listeProposition.length}`;
 }
 
 // gestion formulaire

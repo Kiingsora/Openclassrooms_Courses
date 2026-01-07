@@ -15,18 +15,19 @@
 <body>
   <h1>Azertype prompt</h1>
 
-  <div class="radioButton">
-    <label for="mots">
-      <input type="radio" name="choix" id="mots"> Mots
-    </label>
-    <label for="phrases">
-      <input type="radio" name="choix" id="phrases"> Phrases
-    </label>
-  </div>
-
-  <div id="zonePropostion" style="height: 2rem;"> Veuillez choisir un mode</div>
-  <input id="promptGame" type="text" disabled />
-  <div class="zoneScore">Score : <span>0</span></div>
+  <section class="game">
+    <div class="radioButton">
+      <label for="mots">
+        <input type="radio" name="choix" id="mots"> Mots
+      </label>
+      <label for="phrases">
+        <input type="radio" name="choix" id="phrases"> Phrases
+      </label>
+    </div>
+    <div id="zonePropostion" style="height: 2rem;"> Veuillez choisir un mode</div>
+    <input id="promptGame" type="text" disabled />
+    <div class="zoneScore">Score : <span>0</span></div>
+  </section>
 
   <form id="formScore" action="">
     <h2 for="">Partagez votre score</h2>
