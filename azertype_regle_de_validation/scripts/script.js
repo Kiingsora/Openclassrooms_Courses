@@ -24,7 +24,7 @@ let listeProposition;
 // lance le jeu
 function launchGameW() {
   choixDuMode();
-  
+
   document.addEventListener("keydown", (event) => {
     let key = event.key;
     if (key === "Enter") {
@@ -47,7 +47,7 @@ function choixDuMode() {
 
   for (let i = 0; i < inputMotsOuPhrases.length; i++) {
     typeText = inputMotsOuPhrases[i].value;
-    
+
     inputMotsOuPhrases[i].addEventListener("change", (event) => {
       let cible = event.target;
       if (cible.id === "mots") {
@@ -97,10 +97,39 @@ function afficherEmail(nom, email, score) {
 //--------------------------------- EVENEMENTS
 
 // gestion formulaire
-  formulaire.addEventListener("submit", (event) => {
-    event.preventDefault();
+formulaire.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (nom.value === "" || email.value === "") {
+    regexTextValidation(nom.value);
+    regexMailValidation(email.value);
+    nom.classList.add('error');
+    email.classList.add('error');
+    console.log('Un des champs est vide');
+  } else {
     afficherEmail(nom, email, score);
     nom.value = "";
     email.value = "";
     // formulaire.style.display = "none";    
-  });
+  }
+});
+
+function regexTextValidation(text) {
+  let regex = new RegExp("^[a-z]+$");
+  let regexed = regex.test(text);
+  if (regexed === true) {
+    console.log('reagea night baby !');
+  } else {
+    console.log("reagea bad dude");
+  }
+}
+
+function regexMailValidation(text) {
+  let regex = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+");
+  let regexed = regex.test(text);
+  if (regexed === true) {
+    console.log('reagea night baby !');
+  } else {
+    console.log("reagea bad dude");
+  }
+}

@@ -145,6 +145,14 @@ input[type="radio"]:checked + label {
   width: 5rem;
 }
 
+.error{
+  border-color: red;
+}
+
+.valid{
+  border-color: rgb(0, 255, 55);
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .radio-group {
